@@ -1,0 +1,58 @@
+/*
+* @Author: 小黑E550
+* @Date:   2018-08-21 09:36:28
+* @Last Modified by:   张浩
+* @Last Modified time: 2020-12-20 14:56:03
+*/
+*{
+	padding: 0;
+	margin: 0;
+}
+ul,li{
+	list-style: none;
+}
+.box{
+	width: 270px;
+	height: 360px;
+	border: 1px solid white;
+	margin: 100px auto;
+	position: relative;
+	overflow: hidden;
+}
+.slider{
+	width: 8400px;
+	position: absolute;
+	left: -1200px;
+}
+.slide{
+	width: 1200px;
+	overflow: hidden;
+	float: left;
+}
+.slide img{
+	width: 270px;
+	height: 360px;
+}
+#left{
+	left: 30px;
+}
+#right{
+	right: 30px;
+}
+.nav{
+	position: absolute;
+	left: 50px;
+	bottom: 20px;
+}
+.nav>li{
+	float: left;
+	width: 10px;
+	height: 10px;
+	background: #ccc;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50%;
+}
+.nav .active{
+	background: red;
+}

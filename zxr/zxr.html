@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>carousel</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="animate.js"></script>
+	<style type="text/css">
+		.huodongtongzhi{
+				width: 1300px;
+				height: 50px;
+				border-style: solid;
+				margin-left: 100px;
+				position: relative;
+				top:50px;
+				border-color: white;
+			}
+			.huodongtongzhi1{
+				width: 450px;
+				font-size: 20px;
+				color: red;
+				position: relative;
+				left: 0;
+				font-weight: lighter;
+			}
+			.srkl{
+				position: relative;
+				top: 200px;
+				float: left;
+			}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="tu/10.gif">
+		<img src="tu/10.gif">
+		<img src="tu/10.gif">
+		<img src="tu/10.gif">
+		<img src="tu/10.gif">
+		<img src="tu/10.gif">
+	</div>
+	<div class="huodongtongzhi">
+		<div class="huodongtongzhi1" id="hdtz1">皮皮然&nbsp&nbsp生日快乐!!!!!!</div>
+	</div>
+	<div>
+		<img src="tu/7.jpg" class="srkl">
+	</div>
+	<div class="box" id="box">
+		<div class="slider" id="slider">
+			<div class="slide"><img src="tu/2.JPG" alt=""></div>
+			<div class="slide"><img src="tu/1.JPG" alt=""></div>
+			<div class="slide"><img src="tu/3.JPG" alt=""></div>
+			<div class="slide"><img src="tu/6.jpg" alt=""></div>
+			<div class="slide"><img src="tu/11.jpg" alt=""></div>
+			<div class="slide"><img src="tu/2.JPG" alt=""></div>
+		</div>
+		<ul class="nav" id="nav">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div>
+		<img src="tu/12.gif">
+		<img src="tu/12.gif">
+		<img src="tu/12.gif">
+		<img src="tu/12.gif">
+		<img src="tu/12.gif">
+	</div>
+	<script>
+		var box = document.getElementById('box');
+		var oNavlist = document.getElementById('nav').children;
+		var slider = document.getElementById('slider');
+		var index = 1;
+		var timer;
+		var isMoving = false;
+		for( var i=0; i<oNavlist.length; i++ ){
+			oNavlist[i].index = i;
+			oNavlist[i].onclick = function(){
+				index = this.index+1;
+				navmove();
+				animate(slider,{left:-1200*index});
+			}
+		}
+		function next(){
+			if(isMoving){
+				return;
+			}
+			isMoving = true;
+			index++;
+			navmove();
+			animate(slider,{left:-1200*index},function(){
+				if(index==6){
+					slider.style.left = '-1200px';
+					index = 1;
+				}
+				isMoving = false;
+			});
+		}
+		function prev(){
+			if(isMoving){
+				return;
+			}
+			isMoving = true;
+			index--;
+			navmove();
+			animate(slider,{left:-1200*index},function(){
+				if(index==0){
+					slider.style.left = '-6000px';
+					index = 5;
+				}
+				isMoving = false;
+			});
+		}
+		function navmove(){
+			for( var i=0; i<oNavlist.length; i++ ){
+				oNavlist[i].className = "";
+			}
+			if(index >4 ){
+				oNavlist[0].className = "active";
+			}else if(index<=0){
+				oNavlist[3].className = "active";
+			}else {
+				oNavlist[index-1].className = "active";
+			}
+		}
+		timer = setInterval(next, 3000);
+
+		var hdtz1=document.getElementById("hdtz1");
+		var hdtz2=setInterval(function lundong(){
+			var now=parseInt(getStyle(hdtz1,"left"));
+			if (now==1000) {
+				hdtz1.style.left=0;
+				lundong();
+			}else{
+				hdtz1.style.left=now+1+"px";
+			}
+		},20);
+	</script>
+</body>
+</html>
